@@ -5,8 +5,14 @@
 	"tasks": [
 		{
 			"type": "npm",
+			"script": "build:lsp",
+			"problemMatcher": []
+		},
+		{
+			"type": "npm",
 			"script": "compile",
-			"problemMatcher": "$tsc"
+			"problemMatcher": "$tsc",
+			"dependsOn": "npm: build:lsp"
 		},
 		{
 			"type": "npm",
