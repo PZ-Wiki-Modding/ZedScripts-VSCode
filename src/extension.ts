@@ -3,8 +3,9 @@ import { LanguageClient, TransportKind } from "vscode-languageclient/node";
 
 export async function activate(context: vscode.ExtensionContext) {
     const serverOptions = {
-        command: "/home/simon/Documents/Repositories/LSP/ZedScripts-LSP/.venv/bin/python",
-        args: ["-m", "ZedScripts.main"],
+        // command: "/home/simon/Documents/Repositories/LSP/ZedScripts-LSP/.venv/bin/python",
+        // args: ["-m", "ZedScripts.main"],
+        command: "/home/simon/Documents/Repositories/LSP/ZedScripts-LSP/dist/ZedScripts",
         transport: TransportKind.stdio,
     };
     
