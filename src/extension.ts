@@ -2,10 +2,9 @@ import * as vscode from 'vscode';
 import { LanguageClient, TransportKind } from "vscode-languageclient/node";
 
 export async function activate(context: vscode.ExtensionContext) {
+    const executableName = process.platform === "win32" ? "ZedScripts.exe" : "ZedScripts";
     const serverOptions = {
-        // command: "/home/simon/Documents/Repositories/LSP/ZedScripts-LSP/.venv/bin/python",
-        // args: ["-m", "ZedScripts.main"],
-        command: "/home/simon/Documents/Repositories/LSP/ZedScripts-LSP/dist/ZedScripts",
+        command: context.asAbsolutePath(`ZedScripts-LSP/dist/${executableName}`),
         transport: TransportKind.stdio,
     };
     
