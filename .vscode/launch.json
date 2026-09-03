@@ -49,15 +49,5 @@
                 }
             ]
         }
-    ],
-    "compounds": [
-        {
-            "name": "Server/Client (Python Debug)",
-            "configurations": [
-                "Run Extension (Python Debug)",
-                "Python: Attach to Server"
-            ],
-            "stopAll": true
-        }
     ]
 }
