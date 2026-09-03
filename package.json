@@ -10,7 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:plaintext"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -25,6 +25,7 @@
     "vscode:prepublish": "npm run build:lsp && npm run package",
     "build:lsp": "make -C ZedScripts-LSP build",
     "compile": "tsc --noEmit -p ./ && node esbuild.js",
+    "compile:extension": "tsc --noEmit -p ./ && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
     "watch:tsc": "tsc --noEmit -w -p ./",
     "watch:esbuild": "node esbuild.js --watch",

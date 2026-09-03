@@ -3,19 +3,61 @@
 // Hover to view descriptions of existing attributes.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Run Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
-			],
-			"outFiles": [
-				"${workspaceFolder}/out/**/*.js"
-			],
-			"preLaunchTask": "npm: compile"
-		}
-	]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Extension",
+            "type": "extensionHost",
+            "request": "launch",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/**/*.js"
+            ],
+            "preLaunchTask": "npm: compile"
+        },
+
+        {
+            "name": "Run Extension (Python Debug)",
+            "type": "extensionHost",
+            "request": "launch",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/**/*.js"
+            ],
+            "preLaunchTask": "npm: compile:extension",
+            "env": {
+                "ZEDSCRIPTS_DEBUG": "1"
+            }
+        },
+        {
+            "name": "Python: Attach to Server",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "justMyCode": false,
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/ZedScripts-LSP/src",
+                    "remoteRoot": "${workspaceFolder}/ZedScripts-LSP/src"
+                }
+            ]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server/Client (Python Debug)",
+            "configurations": [
+                "Run Extension (Python Debug)",
+                "Python: Attach to Server"
+            ],
+            "stopAll": true
+        }
+    ]
 }
