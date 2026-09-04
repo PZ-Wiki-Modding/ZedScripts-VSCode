@@ -30,7 +30,8 @@
             ],
             "preLaunchTask": "npm: compile:extension",
             "env": {
-                "ZEDSCRIPTS_DEBUG": "1"
+                "ZEDSCRIPTS_USE_SOURCE": "1",
+                "ZEDSCRIPTS_DEBUG_WAIT": "0", // swap between 0 and 1 to require python debugger before startup
             }
         },
         {

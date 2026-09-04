@@ -2,13 +2,17 @@ import * as vscode from 'vscode';
 import { LanguageClient, TransportKind } from "vscode-languageclient/node";
 
 export async function activate(context: vscode.ExtensionContext) {
-    const isDebug = process.env.ZEDSCRIPTS_DEBUG === "1";
+    const isDebug = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
     const executableName = process.platform === "win32" 
         ? "ZedScripts.exe" 
         : "ZedScripts";
     const pythonPath = process.platform === "win32" 
         ? "ZedScripts-LSP/.venv/Scripts/python.exe" 
         : "ZedScripts-LSP/.venv/bin/python";
+
+    if (isDebug) {
+        console.debug("Running in debug mode with Python.");
+    }
 
     // In debug mode, run the server from source via the venv's interpreter so debugpy can attach to it.
     const serverOptions = isDebug
@@ -18,7 +22,7 @@ export async function activate(context: vscode.ExtensionContext) {
             transport: TransportKind.stdio,
             options: {
                 cwd: context.asAbsolutePath("ZedScripts-LSP/src"),
-                env: { ...process.env, ZEDSCRIPTS_DEBUG: "1" },
+                env: {...process.env},
             },
         }
         : {
