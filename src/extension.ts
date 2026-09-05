@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { LanguageClient, TransportKind } from "vscode-languageclient/node";
 
 export async function activate(context: vscode.ExtensionContext) {
-    const isDebug = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
+    const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
     const executableName = process.platform === "win32" 
         ? "ZedScripts.exe" 
         : "ZedScripts";
@@ -10,12 +10,12 @@ export async function activate(context: vscode.ExtensionContext) {
         ? "ZedScripts-LSP/.venv/Scripts/python.exe" 
         : "ZedScripts-LSP/.venv/bin/python";
 
-    if (isDebug) {
-        console.debug("Running in debug mode with Python.");
+    if (useSource) {
+        console.debug("Running with Python source files.");
     }
 
     // In debug mode, run the server from source via the venv's interpreter so debugpy can attach to it.
-    const serverOptions = isDebug
+    const serverOptions = useSource
         ? {
             command: context.asAbsolutePath(pythonPath),
             args: ["-m", "ZedScripts.main"],
@@ -31,7 +31,12 @@ export async function activate(context: vscode.ExtensionContext) {
         };
     
     const clientOptions = {
-        documentSelector: [{ scheme: "file", language: "plaintext" }],
+        documentSelector: [
+            { 
+                scheme: "file", 
+                language: "plaintext" 
+            }
+        ],
     };
     
     const client = new LanguageClient(
