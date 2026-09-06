@@ -1,5 +1,10 @@
 import * as vscode from 'vscode';
-import { LanguageClient, TransportKind } from "vscode-languageclient/node";
+import { 
+    LanguageClient, 
+    TransportKind,
+    ServerOptions,
+    LanguageClientOptions,
+} from "vscode-languageclient/node";
 
 export async function activate(context: vscode.ExtensionContext) {
     const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
@@ -15,7 +20,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }
 
     // In debug mode, run the server from source via the venv's interpreter so debugpy can attach to it.
-    const serverOptions = useSource
+    const serverOptions: ServerOptions = useSource
         ? {
             command: context.asAbsolutePath(pythonPath),
             args: ["-m", "ZedScripts.main"],
@@ -30,7 +35,7 @@ export async function activate(context: vscode.ExtensionContext) {
             transport: TransportKind.stdio,
         };
     
-    const clientOptions = {
+    const clientOptions: LanguageClientOptions = {
         documentSelector: [
             { 
                 scheme: "file", 

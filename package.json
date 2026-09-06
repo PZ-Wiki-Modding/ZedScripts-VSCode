@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "onLanguage:plaintext"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -19,7 +20,12 @@
         "command": "zedscripts.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+    "configurationDefaults": {
+      "[plaintext]": {
+         "editor.semanticHighlighting.enabled": true
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run build:lsp && npm run package",
