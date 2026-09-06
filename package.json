@@ -1,5 +1,5 @@
 {
-  "name": "zedscripts",
+  "name": "ZedScripts",
   "displayName": "ZedScripts",
   "description": "",
   "version": "0.0.1",
@@ -10,22 +10,63 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished",
-    "onLanguage:plaintext"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "zedscripts.helloWorld",
-        "title": "Hello World"
-      }
-    ],
     "configurationDefaults": {
       "[plaintext]": {
          "editor.semanticHighlighting.enabled": true
+      },
+      "[ZedScripts]": {
+         "editor.semanticHighlighting.enabled": true
       }
-    }
+    },
+    "languages": [
+      {
+        "id": "ZedScripts",
+        "aliases": [
+          "zedscripts",
+          "pz-scripts"
+        ],
+        "configuration": "./src/language/ZedScripts.configuration.json",
+        "icon": {
+          "dark": "icons/zedscripts_dark.svg",
+          "light": "icons/zedscripts_light.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ZedScripts",
+        "scopeName": "source.pz-script",
+        "path": "./src/language/ZedScripts.tmLanguage.json"
+      }
+    ],
+    "semanticTokenScopes": [
+      {
+        "scopes": {
+          "entity.name.recipe.pz": [
+            "entity.name.recipe"
+          ],
+          "entity.name.item.pz": [
+            "entity.name.item"
+          ],
+          "entity.name.recipe.name.pz": [
+            "entity.name.recipe.name"
+          ],
+          "entity.name.item.name.pz": [
+            "entity.name.item.name"
+          ],
+          "keyword.control.pz": [
+            "keyword.control"
+          ],
+          "support.type.property-name.pz": [
+            "support.type.property-name"
+          ]
+        }
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run build:lsp && npm run package",

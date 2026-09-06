@@ -6,6 +6,11 @@ import {
     LanguageClientOptions,
 } from "vscode-languageclient/node";
 
+import { LANG_ZEDSCRIPTS } from "./project";
+import { reopenFile } from "./utils";
+import { ZedNotification, SetZedScriptsNotificationParams } from "./notifications";
+
+
 export async function activate(context: vscode.ExtensionContext) {
     const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
     const executableName = process.platform === "win32" 
@@ -40,6 +45,10 @@ export async function activate(context: vscode.ExtensionContext) {
             { 
                 scheme: "file", 
                 language: "plaintext" 
+            },
+            {
+                scheme: "file",
+                language: LANG_ZEDSCRIPTS
             }
         ],
     };
@@ -50,9 +59,19 @@ export async function activate(context: vscode.ExtensionContext) {
         serverOptions,
         clientOptions,
     );
+    registerNotification(client);
     
     context.subscriptions.push(client);
     await client.start();
+}
+
+
+function registerNotification(client: LanguageClient) {
+    client.onNotification(ZedNotification.SET_ZEDSCRIPTS, (params: SetZedScriptsNotificationParams) => {
+        // console.log("Received setZedScripts notification:", params);
+        const uri = params.uri;
+        reopenFile(vscode.workspace.textDocuments.find(doc => doc.uri.toString() === uri)!);
+    });
 }
 
 // This method is called when your extension is deactivated
