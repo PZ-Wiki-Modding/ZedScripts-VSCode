@@ -17,8 +17,8 @@ export async function activate(context: vscode.ExtensionContext) {
         ? "ZedScripts.exe" 
         : "ZedScripts";
     const pythonPath = process.platform === "win32" 
-        ? "ZedScripts-LSP/.venv/Scripts/python.exe" 
-        : "ZedScripts-LSP/.venv/bin/python";
+        ? ".venv/Scripts/python.exe" 
+        : ".venv/bin/python";
 
     if (useSource) {
         console.debug("Running with Python source files.");
