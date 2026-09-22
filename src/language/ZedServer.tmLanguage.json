@@ -1,0 +1,28 @@
+{
+  "scopeName": "source.zedserver",
+  "patterns": [
+    {
+      "name": "zedserver.root",
+      "match": "(ROOT-\\S+)",
+      "captures": {
+        "1": { "name": "keyword.control" }
+      }
+    },
+    {
+      "name": "zedserver.block",
+      "match": "(→) (\\S+)",
+      "captures": {
+        "1": { "name": "entity.name.class" },
+        "2": { "name": "keyword.control" }
+      }
+    },
+    {
+      "name": "zedserver.property",
+      "match": "(#) (\\S+)",
+      "captures": {
+        "1": { "name": "entity.name.class" },
+        "2": { "name": "variable.parameter" }
+      }
+    }
+  ]
+}

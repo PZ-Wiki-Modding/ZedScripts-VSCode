@@ -34,6 +34,12 @@
           "dark": "icons/zedscripts_dark.svg",
           "light": "icons/zedscripts_light.svg"
         }
+      },
+      {
+        "id": "ZedServer",
+        "aliases": [
+          "zedserver"
+        ]
       }
     ],
     "grammars": [
@@ -41,6 +47,11 @@
         "language": "ZedScripts",
         "scopeName": "source.zedscripts",
         "path": "./src/language/ZedScripts.tmLanguage.json"
+      },
+      {
+        "language": "ZedServer",
+        "scopeName": "source.zedserver",
+        "path": "./src/language/ZedServer.tmLanguage.json"
       }
     ],
     "semanticTokenScopes": [
