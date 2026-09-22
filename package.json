@@ -39,7 +39,7 @@
     "grammars": [
       {
         "language": "ZedScripts",
-        "scopeName": "source.pz-script",
+        "scopeName": "source.zedscripts",
         "path": "./src/language/ZedScripts.tmLanguage.json"
       }
     ],

@@ -1,9 +1,25 @@
 {
-  "scopeName": "source.pz-script",
+  "scopeName": "source.zedscripts",
   "patterns": [
+    {
+      "name": "entity.name.recipe.pz",
+      "match": "^\\s*(\\w+)\\s+(|[\\w !*.:\/]+?)(?:\\s*{|)\\s*$",
+      "captures": {
+        "1": { "name": "keyword.control" },
+        "2": { "name": "entity.name.class" }
+      }
+    },
     {
       "name": "string.quoted.double.pz",
       "match": "\\b[a-zA-Z][\\w]*[.-\/-][\\w.-\/-]+\\b"
+    },
+    {
+      "name": "entity.name.property.pz",
+      "match": "(\\S+[\\S\\/ ]*?)(?:\\s*([=])\\s*)",
+      "captures": {
+        "1": { "name": "variable.parameter" },
+        "2": { "name": "keyword.operator.assignment" }
+      }
     },
     {
       "name": "entity.name.inputs.pz",
