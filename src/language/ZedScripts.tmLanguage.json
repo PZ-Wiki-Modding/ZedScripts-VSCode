@@ -71,7 +71,7 @@
     },
     {
       "name": "keyword.operator.assignment.pz",
-      "match": "[=:,;.]"
+      "match": "[=:,;.\\{\\}\\[\\]]"
     }
   ]
 }
