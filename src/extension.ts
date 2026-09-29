@@ -6,7 +6,7 @@ import {
     LanguageClientOptions,
 } from "vscode-languageclient/node";
 
-import { LANG_ZEDSCRIPTS } from "./project";
+import { LANG_ZEDSCRIPTS, globalConfigDir, CONFIGURATION_FILE_NAME } from "./project";
 import { reopenFile } from "./utils";
 import { ZedNotification, SetZedScriptsNotificationParams } from "./notifications";
 
@@ -49,10 +49,25 @@ export async function activate(context: vscode.ExtensionContext) {
             {
                 scheme: "file",
                 language: LANG_ZEDSCRIPTS
-            }
+            },
+
+            // config files
+            {  // workspace-relative config
+                scheme: "file",
+                pattern: "**/.zedscripts.json"
+            },
         ],
     };
-    
+
+    // global config file watcher
+    const globalConfigWatcher = vscode.workspace.createFileSystemWatcher(
+        new vscode.RelativePattern(vscode.Uri.file(globalConfigDir), 
+        CONFIGURATION_FILE_NAME)
+    );
+    context.subscriptions.push(globalConfigWatcher);
+
+    clientOptions.synchronize = { fileEvents: globalConfigWatcher };
+
     const client = new LanguageClient(
         "zedserver",
         "ZedServer",
