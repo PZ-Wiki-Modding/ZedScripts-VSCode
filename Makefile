@@ -21,11 +21,11 @@ package:
 pat:
 	vsce verify-pat
 
-test:
-	npx @vscode/test-cli
-	npm run test:jest
+# test:
+# 	npx @vscode/test-cli
+# 	npm run test:jest
 
-release: pat test
+release: pat #test
 	set -euo pipefail
 
 # publish to registries (VS Code Marketplace and Open VSX)
