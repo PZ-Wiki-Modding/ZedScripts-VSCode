@@ -8,11 +8,19 @@
     "vscode": "^1.134.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages"
   ],
   "activationEvents": [
     "onStartupFinished"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pz-wiki-modding/ZedScripts-VSCode"
+  },
+  "bugs": {
+    "type": "git",
+    "url": "https://github.com/pz-wiki-modding/ZedScripts-VSCode/issues"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "configurationDefaults": {
