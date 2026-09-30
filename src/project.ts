@@ -7,4 +7,4 @@ export const LANG_ZEDSCRIPTS = "ZedScripts"
 export const globalConfigDir = path.join(os.homedir(), ".zedscripts");
 export const CONFIGURATION_FILE_NAME = ".zedscripts.json";
 
-export const LSP_VERSION = "0.0.1";
+export const LSP_VERSION = "0.0.2";
