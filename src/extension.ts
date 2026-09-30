@@ -6,27 +6,36 @@ import {
     LanguageClientOptions,
 } from "vscode-languageclient/node";
 
-import { LANG_ZEDSCRIPTS, globalConfigDir, CONFIGURATION_FILE_NAME } from "./project";
+import { 
+    LANG_ZEDSCRIPTS, 
+    globalConfigDir, 
+    CONFIGURATION_FILE_NAME,
+    LSP_VERSION
+} from "./project";
 import { reopenFile } from "./utils";
 import { ZedNotification, SetZedScriptsNotificationParams } from "./notifications";
+import { ensureLSPBinary } from "./lsp";
 
 
 export async function activate(context: vscode.ExtensionContext) {
     const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
-    const executableName = process.platform === "win32" 
-        ? "ZedScripts.exe" 
-        : "ZedScripts";
+    const useLocalMode = process.env.ZEDSCRIPTS_LOCAL_MODE === "1";
     const pythonPath = process.platform === "win32" 
         ? ".venv/Scripts/python.exe" 
         : ".venv/bin/python";
 
     if (useSource) {
         console.debug("Running with Python source files.");
+    } else if (useLocalMode) {
+        console.debug("Running with local dist folder.");
     }
 
-    // In debug mode, run the server from source via the venv's interpreter so debugpy can attach to it.
-    const serverOptions: ServerOptions = useSource
-        ? {
+    let serverOptions: ServerOptions;
+
+    if (useSource) {
+        // in debug mode, run the server from source 
+        // via the venv's interpreter so debugpy can attach to it
+        serverOptions = {
             command: context.asAbsolutePath(pythonPath),
             args: ["-m", "ZedScripts.main"],
             transport: TransportKind.stdio,
@@ -34,11 +43,25 @@ export async function activate(context: vscode.ExtensionContext) {
                 cwd: context.asAbsolutePath("ZedScripts-LSP/src"),
                 env: {...process.env},
             },
-        }
-        : {
+        };
+    } else if (useLocalMode) {
+        // use locally built dist folder (for development)
+        const executableName = process.platform === "win32" 
+            ? "ZedScripts.exe" 
+            : "ZedScripts";
+        serverOptions = {
             command: context.asAbsolutePath(`ZedScripts-LSP/dist/${executableName}`),
             transport: TransportKind.stdio,
         };
+    } else {
+        // download or use cached LSP binary from GitHub releases
+        const binaryPath = await ensureLSPBinary(context, LSP_VERSION);
+        
+        serverOptions = {
+            command: binaryPath,
+            transport: TransportKind.stdio,
+        };
+    }
     
     const clientOptions: LanguageClientOptions = {
         documentSelector: [

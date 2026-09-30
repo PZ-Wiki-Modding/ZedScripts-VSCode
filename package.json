@@ -1,7 +1,8 @@
 {
   "name": "ZedScripts",
   "displayName": "ZedScripts",
-  "description": "",
+  "description": "BETA - Implements the ZedScripts language server protocol inside Visual Studio Code",
+  "publisher": "SimKDT",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.134.0"
