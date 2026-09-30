@@ -10,7 +10,8 @@ help:
 	@echo "  build:   Build the extension"
 	@echo "  test:    Run tests"
 	@echo "  package: Package the extension"
-	@echo "  release: Publish to VS Code Marketplace and Open VSX (set UPDATE_TYPE to patch, minor or major, default patch)"
+	@echo "  release: Publish to VS Code Marketplace"
+	@echo "      UPDATE_TYPE=<patch|minor|major> (default patch)"
 
 build:
 	npm run build
@@ -28,9 +29,8 @@ pat:
 release: pat #test
 	set -euo pipefail
 
-# publish to registries (VS Code Marketplace and Open VSX)
+# publish to registries on VS Code Marketplace
 	vsce publish "$(UPDATE_TYPE)"
-# 	npx ovsx publish
 
 # get version from package.json
 	VERSION=$$(node -e "console.log(require('./package.json').version)")
