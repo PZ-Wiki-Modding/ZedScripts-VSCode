@@ -24,6 +24,40 @@
         "1": { "name": "entity.name.class" },
         "2": { "name": "variable.parameter" }
       }
+    },
+    {
+      "name": "entity.name.class",
+      "match": "[\\:\\=;<>\\[\\]]"
+    },
+    {
+      "name": "constant.numeric.pz",
+      "match": "(?:\\b[+-]*\\d+(?:\\.\\d*)?|\\.\\d+)\\b"
+    },
+    {
+      "name": "zedscripts.ref",
+      "match": "(block)(<)(\\S+?)(>)",
+      "captures": {
+        "1": { "name": "keyword.control" },
+        "2": { "name": "entity.name.class" },
+        "3": { "name": "entity.name.type" },
+        "4": { "name": "entity.name.class" }
+      }
+    },
+    {
+      "name": "constant.numeric.pz",
+      "match": "(?:integer|float)"
+    },
+    {
+      "name": "variable",
+      "match": "boolean|true|false"
+    },
+    {
+      "name": "string",
+      "match": "string|translation"
+    },
+    {
+      "name": "entity.name.function",
+      "match": "callback"
     }
   ]
 }
