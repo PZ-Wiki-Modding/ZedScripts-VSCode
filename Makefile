@@ -30,7 +30,7 @@ release: pat #test
 
 # publish to registries (VS Code Marketplace and Open VSX)
 	vsce publish "$(UPDATE_TYPE)"
-	npx ovsx publish
+# 	npx ovsx publish
 
 # get version from package.json
 	VERSION=$$(node -e "console.log(require('./package.json').version)")
