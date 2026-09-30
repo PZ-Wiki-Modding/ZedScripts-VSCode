@@ -33,6 +33,9 @@ export async function activate(context: vscode.ExtensionContext) {
     let serverOptions: ServerOptions;
 
     if (useSource) {
+        // retrieve source folder from global env var ZEDSCRIPTS_LSP_SRC
+        const sourceFolder = process.env.ZEDSCRIPTS_LSP_SRC;
+
         // in debug mode, run the server from source 
         // via the venv's interpreter so debugpy can attach to it
         serverOptions = {
@@ -40,7 +43,7 @@ export async function activate(context: vscode.ExtensionContext) {
             args: ["-m", "ZedScripts.main"],
             transport: TransportKind.stdio,
             options: {
-                cwd: context.asAbsolutePath("ZedScripts-LSP/src"),
+                cwd: sourceFolder,
                 env: {...process.env},
             },
         };
