@@ -2,6 +2,7 @@
 <!-- http://keepachangelog.com/ -->
 
 ## [Unreleased]
+- Lowered Visual Studio Code minimum version requirement from 1.134.0 to 1.100.0
 
 ## [0.0.1] - Initial release
 Created by [@SimKDT]. Provided by [@PZ-Wiki-Modding] and based on the initial [ZedScripts] VSCode extension.
