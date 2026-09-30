@@ -3,7 +3,7 @@
   "displayName": "ZedScripts",
   "description": "BETA - Implements the ZedScripts language server protocol inside Visual Studio Code",
   "publisher": "SimKDT",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "engines": {
     "vscode": "^1.134.0"
   },
@@ -25,10 +25,10 @@
   "contributes": {
     "configurationDefaults": {
       "[plaintext]": {
-         "editor.semanticHighlighting.enabled": true
+        "editor.semanticHighlighting.enabled": true
       },
       "[ZedScripts]": {
-         "editor.semanticHighlighting.enabled": true
+        "editor.semanticHighlighting.enabled": true
       }
     },
     "languages": [
