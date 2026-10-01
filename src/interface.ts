@@ -8,7 +8,7 @@ interface StatusBarConfig {
 }
 
 export enum State {
-    OFF,
+    STOPPED,
     LOADING_WORKSPACES,
     LOADING_LIBRARIES,
     RUNNING,
@@ -21,7 +21,7 @@ export class ZedScriptsInterface {
 
     // status bar
     statusBar: vscode.StatusBarItem;
-    state: State = State.OFF;
+    state: State = State.STOPPED;
 
     _progress: number = 0;
     _uri: string = "";
@@ -56,8 +56,8 @@ export class ZedScriptsInterface {
     getStatusBarConfig(): StatusBarConfig {
         const fileCounter = this.getProgress();
         const configs: Record<State, StatusBarConfig> = {
-            [State.OFF]: {
-                text: 'ZedScripts: OFF',
+            [State.STOPPED]: {
+                text: "$(debug-stop) ZedScripts",
             },
             [State.LOADING_WORKSPACES]: {
                 text: "$(sync~spin) ZedScripts: loading workspaces... " + fileCounter,
@@ -80,7 +80,7 @@ export class ZedScriptsInterface {
         tooltip.isTrusted = true;
 
         switch (this.state) {
-            case State.OFF:
+            case State.STOPPED:
                 tooltip.appendMarkdown("ZedScripts is currently OFF.");
                 break;
             case State.LOADING_WORKSPACES:
