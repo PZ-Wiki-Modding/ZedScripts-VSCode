@@ -89,8 +89,7 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run build:lsp && npm run package",
-    "build:lsp": "make -C ZedScripts-LSP build",
+    "vscode:prepublish": "npm run package",
     "compile": "tsc --noEmit -p ./ && node esbuild.js",
     "compile:extension": "tsc --noEmit -p ./ && node esbuild.js",
     "watch": "npm-run-all -p watch:*",
