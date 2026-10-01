@@ -4,6 +4,7 @@
 ## [Unreleased]
 - Lowered Visual Studio Code minimum version requirement from 1.134.0 to 1.100.0
 - Provides textmate highlighting for typing information in parameter hovering
+- Implement loading progress bar
 
 Updated to ZedScripts-LSP 0.0.2
 
