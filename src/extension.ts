@@ -141,7 +141,7 @@ function registerNotification(client: LanguageClient) {
         }
     });
     client.onNotification(ZedNotification.LOADING_DOCUMENTS_DONE, () => {
-        ZSI.setState(State.DONE)
+        ZSI.setState(State.RUNNING)
     });
 }
 

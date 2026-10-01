@@ -11,7 +11,7 @@ export enum State {
     OFF,
     LOADING_WORKSPACES,
     LOADING_LIBRARIES,
-    DONE,
+    RUNNING,
 }
 
 
@@ -67,8 +67,8 @@ export class ZedScriptsInterface {
                 text: "$(sync~spin) ZedScripts: loading libraries... " + fileCounter,
                 color: new vscode.ThemeColor("statusBarItem.warningBackground"),
             },
-            [State.DONE]: {
-                text: '$(check) ZedScripts',
+            [State.RUNNING]: {
+                text: "$(check) ZedScripts",
             }
         }
         return configs[this.state];
@@ -89,7 +89,7 @@ export class ZedScriptsInterface {
             case State.LOADING_LIBRARIES:
                 tooltip.appendMarkdown("ZedScripts is loading library: " + this._uri);
                 break;
-            case State.DONE:
+            case State.RUNNING:
                 tooltip.appendMarkdown("ZedScripts is loaded.");
                 break;
         }
