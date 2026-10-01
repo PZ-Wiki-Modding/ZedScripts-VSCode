@@ -13,9 +13,16 @@ import {
     LSP_VERSION
 } from "./project";
 import { reopenFile } from "./utils";
-import { ZedNotification, SetZedScriptsNotificationParams } from "./notifications";
+import { 
+    ZedNotification, 
+    SetZedScriptsNotificationParams,
+    LoadingDocumentsNotificationParams,
+} from "./notifications";
 import { ensureLSPBinary } from "./lsp";
+import { ZedScriptsInterface, State } from "./interface";
+import { WorkspaceType } from "./stubs";
 
+export let ZSI: ZedScriptsInterface;
 
 export async function activate(context: vscode.ExtensionContext) {
     const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
@@ -23,6 +30,10 @@ export async function activate(context: vscode.ExtensionContext) {
     const pythonPath = process.platform === "win32" 
         ? ".venv/Scripts/python.exe" 
         : ".venv/bin/python";
+
+    ZSI = new ZedScriptsInterface(context);
+    ZSI.updateStatusBar();
+    context.subscriptions.push(ZSI.statusBar);
 
     if (useSource) {
         console.debug("Running with Python source files.");
@@ -111,7 +122,26 @@ function registerNotification(client: LanguageClient) {
     client.onNotification(ZedNotification.SET_ZEDSCRIPTS, (params: SetZedScriptsNotificationParams) => {
         // console.log("Received setZedScripts notification:", params);
         const uri = params.uri;
-        reopenFile(vscode.workspace.textDocuments.find(doc => doc.uri.toString() === uri)!);
+        const file = vscode.workspace.textDocuments.find(doc => doc.uri.toString() === uri);
+        if (file) {
+            reopenFile(file);
+        }
+    });
+    client.onNotification(ZedNotification.LOADING_DOCUMENTS, (params: LoadingDocumentsNotificationParams) => {
+        const uri = params.uri;
+        const progress = params.progress;
+        const workspaceType = params.workspace_type;
+        switch (workspaceType) {
+            case WorkspaceType.PROJECT:
+                ZSI.setProgress(State.LOADING_WORKSPACES, progress, uri);
+                break;
+            case WorkspaceType.LIBRARY:
+                ZSI.setProgress(State.LOADING_LIBRARIES, progress, uri);
+                break;
+        }
+    });
+    client.onNotification(ZedNotification.LOADING_DOCUMENTS_DONE, () => {
+        ZSI.setState(State.DONE)
     });
 }
 
