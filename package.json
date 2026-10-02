@@ -1,6 +1,7 @@
 {
   "name": "ZedScripts",
   "displayName": "ZedScripts",
+  "icon": "images/pz-script.png",
   "description": "BETA - Implements the ZedScripts language server protocol inside Visual Studio Code",
   "publisher": "SimKDT",
   "version": "0.0.2",
