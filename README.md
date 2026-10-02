@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/PZ-Wiki-Modding/ZedScripts-VSCode?label=License)](LICENSE)
 ![Code Size](https://img.shields.io/github/languages/code-size/PZ-Wiki-Modding/ZedScripts-VSCode?label=Code%20Size)
-[![PyPI Version](https://img.shields.io/badge/PyPI-0.0.2-orange?logo=pypi)](https://pypi.org/project/ZedScripts/0.0.2/)
+[![ZedScripts LSP Version](https://img.shields.io/badge/ZedScripts%20LSP-0.0.2-orange?logo=pypi)](https://pypi.org/project/ZedScripts/0.0.2/)
 
 > [!IMPORTANT]
 > Work In Progress, this is a BETA release
