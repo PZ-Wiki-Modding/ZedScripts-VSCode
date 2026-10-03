@@ -13,14 +13,11 @@ import {
     LSP_VERSION
 } from "./project";
 import { reopenFile } from "./utils";
-import { 
-    ZedNotification, 
-    SetZedScriptsNotificationParams,
-    LoadingDocumentsNotificationParams,
-} from "./notifications";
+import * as Notifications from "./notifications";
 import { ensureLSPBinary } from "./lsp";
 import { ZedScriptsInterface, State } from "./interface";
 import { WorkspaceType } from "./stubs";
+import { LOADING_DOCUMENTS_PARAMS } from './notifications';
 
 export let ZSI: ZedScriptsInterface;
 
@@ -119,7 +116,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 
 function registerNotification(client: LanguageClient) {
-    client.onNotification(ZedNotification.SET_ZEDSCRIPTS, (params: SetZedScriptsNotificationParams) => {
+    client.onNotification(Notifications.ZedNotification.SET_ZEDSCRIPTS, (params: Notifications.SET_ZEDSCRIPTS_PARAMS) => {
         // console.log("Received setZedScripts notification:", params);
         const uri = params.uri;
         const file = vscode.workspace.textDocuments.find(doc => doc.uri.toString() === uri);
@@ -127,21 +124,39 @@ function registerNotification(client: LanguageClient) {
             reopenFile(file);
         }
     });
-    client.onNotification(ZedNotification.LOADING_DOCUMENTS, (params: LoadingDocumentsNotificationParams) => {
+
+    client.onNotification(Notifications.ZedNotification.SET_PROGRESS, (params: Notifications.SET_PROGRESS_PARAMS) => {
+        ZSI.setProgress(params.progress);
+        ZSI.updateStatusBar();
+    });
+    client.onNotification(Notifications.ZedNotification.SET_WORKSPACE_COUNT, (params: Notifications.SET_WORKSPACE_COUNT_PARAMS) => {
+        ZSI.setWorkspaceCount(params.count);
+        ZSI.updateStatusBar();
+    });
+    client.onNotification(Notifications.ZedNotification.SET_LIBRARIES_COUNT, (params: Notifications.SET_LIBRARIES_COUNT_PARAMS) => {
+        ZSI.setLibrariesCount(params.count);
+        ZSI.updateStatusBar();
+    });
+
+    client.onNotification(Notifications.ZedNotification.LOADING_DOCUMENTS, (params: Notifications.LOADING_DOCUMENTS_PARAMS) => {
         const uri = params.uri;
-        const progress = params.progress;
+        const index = params.index;
         const workspaceType = params.workspace_type;
         switch (workspaceType) {
             case WorkspaceType.PROJECT:
-                ZSI.setProgress(State.LOADING_WORKSPACES, progress, uri);
+                ZSI.setUri(uri);
+                ZSI.setWorkspaceIndex(index);
+                ZSI.setState(State.LOADING_WORKSPACES);
                 break;
             case WorkspaceType.LIBRARY:
-                ZSI.setProgress(State.LOADING_LIBRARIES, progress, uri);
+                ZSI.setUri(uri);
+                ZSI.setLibrariesIndex(index);
+                ZSI.setState(State.LOADING_LIBRARIES);
                 break;
         }
     });
-    client.onNotification(ZedNotification.LOADING_DOCUMENTS_DONE, () => {
-        ZSI.setState(State.RUNNING)
+    client.onNotification(Notifications.ZedNotification.LOADING_DOCUMENTS_DONE, () => {
+        ZSI.setState(State.RUNNING);
     });
 }
 

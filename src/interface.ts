@@ -24,7 +24,11 @@ export class ZedScriptsInterface {
     state: State = State.STOPPED;
 
     _progress: number = 0;
-    _uri: string = "";
+    _uri: string = "unknown";
+    _workspaceCount: number = 0;
+    _workspaceNumber: number = 0;
+    _librariesCount: number = 0;
+    _librariesNumber: number = 0;
 
     constructor(context: vscode.ExtensionContext) {
         this.context = context;
@@ -95,6 +99,13 @@ export class ZedScriptsInterface {
         }
         
 
+        // add tooltip about workspaces and libraries
+        tooltip.appendMarkdown(`\n\n-----\n\n`);
+        tooltip.appendMarkdown(`\n\nWorkspaces: ${this._workspaceNumber} / ${this._workspaceCount}`);
+        tooltip.appendMarkdown(`\n\nLibraries: ${this._librariesNumber} / ${this._librariesCount}`);
+
+
+
         // tooltip.appendMarkdown("Hello World!");
         // tooltip.appendMarkdown('\n\n')
 
@@ -128,10 +139,25 @@ export class ZedScriptsInterface {
         this.updateStatusBar();
     }
 
-    setProgress(state: State, progress: number, uri: string): void {
+    setProgress(progress: number): void {
         this._progress = progress;
-        this._uri = uri;
-        this.setState(state)
     }
 
+    setUri(uri: string): void {
+        this._uri = uri;
+    }
+
+    setWorkspaceCount(amount: number): void {
+        this._workspaceCount = amount;
+    }
+    setWorkspaceIndex(number: number): void {
+        this._workspaceNumber = number;
+    }
+
+    setLibrariesCount(count: number): void {
+        this._librariesCount = count;
+    }
+    setLibrariesIndex(number: number): void {
+        this._librariesNumber = number;
+    }
 }
