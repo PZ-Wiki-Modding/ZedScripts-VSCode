@@ -87,6 +87,12 @@
           ]
         }
       }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": ".zedscripts.json",
+        "url": "./ZedScripts-LSP/schema/zedscripts.json"
+      }
     ]
   },
   "scripts": {
