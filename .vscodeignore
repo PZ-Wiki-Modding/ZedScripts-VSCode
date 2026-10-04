@@ -1,2 +1,9 @@
+**
 !out/extension.js
-ZedScripts-LSP/**
+!src/language/*.json
+!icons/*.svg
+!images/**
+!ZedScripts-LSP/schema/zedscripts.json
+!README.md
+!CHANGELOG.md
+!LICENSE

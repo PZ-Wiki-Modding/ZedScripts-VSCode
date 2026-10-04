@@ -38,6 +38,6 @@ release: pat #test
 # release to GitHub
 	git push --tags
 	vsce package
-	gh release create "v$$VERSION" "project-zomboid-scripts-$$VERSION.vsix" \
+	gh release create "v$$VERSION" "ZedScripts-$$VERSION.vsix" \
 		--notes "See [CHANGELOG](https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/blob/main/CHANGELOG.md) for details"
 	git push
