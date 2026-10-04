@@ -4,9 +4,6 @@
 ![Code Size](https://img.shields.io/github/languages/code-size/PZ-Wiki-Modding/ZedScripts-VSCode?label=Code%20Size)
 [![ZedScripts LSP Version](https://img.shields.io/badge/ZedScripts%20LSP-0.0.2-orange?logo=pypi)](https://pypi.org/project/ZedScripts/0.0.2/)
 
-> [!IMPORTANT]
-> Work In Progress, this is a BETA release
-
 A Visual Studio Code extension which implements the [ZedScripts Language Server Protocol](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP).
 
 ## Features and configuration
