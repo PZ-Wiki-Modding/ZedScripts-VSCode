@@ -11,7 +11,7 @@ A Visual Studio Code extension which implements the [ZedScripts Language Server 
 
 ## Features and configuration
 
-See the [ZedScripts-LSP](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP) repository for detailed information of the LSP capabilities.
+See the [ZedScripts-LSP](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP) repository for detailed documentation of the LSP capabilities.
 
 ## License
 
