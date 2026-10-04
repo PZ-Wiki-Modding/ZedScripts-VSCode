@@ -65,8 +65,8 @@
             "justMyCode": false,
             "pathMappings": [
                 {
-                    "localRoot": "${workspaceFolder}/ZedScripts-LSP/src",
-                    "remoteRoot": "${workspaceFolder}/ZedScripts-LSP/src"
+                    "localRoot": "${ZEDSCRIPTS_LSP_SRC}",
+                    "remoteRoot": "${ZEDSCRIPTS_LSP_SRC}"
                 }
             ]
         }

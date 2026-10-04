@@ -17,7 +17,6 @@ import * as Notifications from "./notifications";
 import { ensureLSPBinary } from "./lsp";
 import { ZedScriptsInterface, State } from "./interface";
 import { WorkspaceType } from "./stubs";
-import { LOADING_DOCUMENTS_PARAMS } from './notifications';
 
 export let ZSI: ZedScriptsInterface;
 
