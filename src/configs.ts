@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
 
+import { LSP_VERSION } from "./project";
+
 /**
  * Python logging module levels.
  */
@@ -40,4 +42,8 @@ export function getInitializationOptions(): InitializationOptions {
             ],
         },
     };
+}
+
+export function getLSPVersion(): string {
+    return vscode.workspace.getConfiguration("zedscripts").get("lsp.version", LSP_VERSION);
 }

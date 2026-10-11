@@ -10,14 +10,13 @@ import {
     LANG_ZEDSCRIPTS, 
     globalConfigDir, 
     CONFIGURATION_FILE_NAME,
-    LSP_VERSION
 } from "./project";
 import { reopenFile } from "./utils";
 import * as Notifications from "./notifications";
 import { ensureLSPBinary } from "./lsp";
 import { ZedScriptsInterface, State } from "./interface";
 import { WorkspaceType } from "./stubs";
-import { getInitializationOptions } from "./configs";
+import { getInitializationOptions, getLSPVersion } from "./configs";
 
 export let ZSI: ZedScriptsInterface;
 
@@ -65,8 +64,9 @@ export async function activate(context: vscode.ExtensionContext) {
             transport: TransportKind.stdio,
         };
     } else {
+        console.debug("Running with GitHub release LSP binary.");
         // download or use cached LSP binary from GitHub releases
-        const binaryPath = await ensureLSPBinary(context, LSP_VERSION);
+        const binaryPath = await ensureLSPBinary(context, getLSPVersion());
         
         serverOptions = {
             command: binaryPath,

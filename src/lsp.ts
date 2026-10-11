@@ -4,6 +4,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as https from 'https';
 
+import { LSP_VERSION } from './project';
+
 const GITHUB_OWNER = 'PZ-Wiki-Modding';
 const GITHUB_REPO = 'ZedScripts-LSP';
 
@@ -103,8 +105,11 @@ async function downloadBinary(
 
 export async function ensureLSPBinary(
     context: vscode.ExtensionContext,
-    extensionVersion: string
+    extensionVersion: string,
+    isFallback: boolean = false
 ): Promise<string> {
+    console.log(`Ensuring LSP binary for version: ${extensionVersion}`);
+
     const platformInfo = getPlatformInfo();
     const storagePath = context.globalStoragePath;
     const binaryPath = path.join(storagePath, platformInfo.binaryName);
@@ -127,14 +132,14 @@ export async function ensureLSPBinary(
     console.log(`Downloading LSP binary to ${binaryPath} with version ${extensionVersion}`);
     
     // Show progress notification
-    await vscode.window.withProgress(
-        {
-            location: vscode.ProgressLocation.Notification,
-            title: 'Downloading ZedScripts LSP Server...',
-            cancellable: false,
-        },
-        async (progress) => {
-            try {
+    try {
+        await vscode.window.withProgress(
+            {
+                location: vscode.ProgressLocation.Notification,
+                title: 'Downloading ZedScripts LSP Server...',
+                cancellable: false,
+            },
+            async (progress) => {
                 progress.report({ increment: 0 });
                 await downloadBinary(
                     platformInfo.downloadName,
@@ -152,13 +157,20 @@ export async function ensureLSPBinary(
                 fs.writeFileSync(versionFile, extensionVersion, 'utf-8');
                 
                 progress.report({ increment: 100 });
-            } catch (error) {
-                throw new Error(
-                    `Failed to download LSP server: ${error instanceof Error ? error.message : String(error)}`
-                );
             }
+        ); 
+
+    // fallback to hardcoded LSP version if download fails
+    } catch (error) {
+        if (!isFallback) {
+            console.error(`Failed to download LSP binary, attempting fallback: ${error instanceof Error ? error.message : String(error)}`);
+            vscode.window.showErrorMessage(`Failed to download LSP binary, attempting hardcoded fallback (${LSP_VERSION}). Reason: ${error instanceof Error ? error.message : String(error)}`);
+            return await ensureLSPBinary(context, LSP_VERSION, true);
         }
-    );
+        throw new Error(
+            `Failed to download LSP server even with fallback. Reason: ${error instanceof Error ? error.message : String(error)}`
+        );;
+    }
     
     return binaryPath;
 }

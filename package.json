@@ -61,6 +61,11 @@
           "default": "INFO",
           "scope": "window",
           "description": "Server logging level. Reload the window after changing this setting."
+        },
+        "zedscripts.lsp.version": {
+          "type": "string",
+          "scope": "application",
+          "description": "Version of the ZedScripts LSP server to use. Reload VSCode after changing this setting."
         }
       }
     },
