@@ -52,6 +52,18 @@
         ]
       }
     ],
+    "configuration": {
+      "title": "ZedScripts",
+      "properties": {
+        "zedscripts.logging.level": {
+          "type": "string",
+          "enum": ["NOTSET", "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+          "default": "INFO",
+          "scope": "window",
+          "description": "Server logging level. Reload the window after changing this setting."
+        }
+      }
+    },
     "grammars": [
       {
         "language": "ZedScripts",

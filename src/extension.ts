@@ -17,6 +17,7 @@ import * as Notifications from "./notifications";
 import { ensureLSPBinary } from "./lsp";
 import { ZedScriptsInterface, State } from "./interface";
 import { WorkspaceType } from "./stubs";
+import { getInitializationOptions } from "./configs";
 
 export let ZSI: ZedScriptsInterface;
 
@@ -73,7 +74,16 @@ export async function activate(context: vscode.ExtensionContext) {
         };
     }
     
+    // global config file watcher
+    const globalConfigWatcher = vscode.workspace.createFileSystemWatcher(
+        new vscode.RelativePattern(vscode.Uri.file(globalConfigDir), 
+        CONFIGURATION_FILE_NAME)
+    );
+    context.subscriptions.push(globalConfigWatcher);
+
+    // client options to pass to the LSP
     const clientOptions: LanguageClientOptions = {
+        initializationOptions: getInitializationOptions(),
         documentSelector: [
             { 
                 scheme: "file", 
@@ -90,17 +100,10 @@ export async function activate(context: vscode.ExtensionContext) {
                 pattern: "**/.zedscripts.json"
             },
         ],
+        synchronize: { fileEvents: globalConfigWatcher }
     };
 
-    // global config file watcher
-    const globalConfigWatcher = vscode.workspace.createFileSystemWatcher(
-        new vscode.RelativePattern(vscode.Uri.file(globalConfigDir), 
-        CONFIGURATION_FILE_NAME)
-    );
-    context.subscriptions.push(globalConfigWatcher);
-
-    clientOptions.synchronize = { fileEvents: globalConfigWatcher };
-
+    // register the client/server communication
     const client = new LanguageClient(
         "zedserver",
         "ZedServer",
@@ -110,7 +113,7 @@ export async function activate(context: vscode.ExtensionContext) {
     registerNotification(client);
     
     context.subscriptions.push(client);
-    await client.start();
+    await client.start(); // start the protocol
 }
 
 
