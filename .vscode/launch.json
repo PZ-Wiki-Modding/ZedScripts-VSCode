@@ -5,7 +5,7 @@
 {
     "version": "0.2.0",
     "configurations": [
-        // simple launch without build or python mode
+        // compile the extension and launch without local build or python mode
         {
             "name": "Run Extension (direct)",
             "type": "extensionHost",
@@ -16,7 +16,8 @@
             ],
             "outFiles": [
                 "${workspaceFolder}/out/**/*.js"
-            ]
+            ],
+            "preLaunchTask": "npm: compile:extension"
         },
 
         // launch in build mode
