@@ -83,7 +83,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     // client options to pass to the LSP
     const clientOptions: LanguageClientOptions = {
-        initializationOptions: getInitializationOptions(),
+        // initializationOptions: getInitializationOptions(),
         documentSelector: [
             { 
                 scheme: "file", 
