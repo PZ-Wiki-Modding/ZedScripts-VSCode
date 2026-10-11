@@ -3,7 +3,7 @@
 
 ## [Unreleased]
 
-## [1.0.3] - 2026/10/12
+## [1.1.0] - 2026/10/12
 - Implement configuration for LSP version selection. Fallbacks to hardcoded LSP version if fails.
 
 ## [1.0.2] - 2026/10/12
@@ -30,8 +30,8 @@ Created by [@SimKDT]. Provided by [@PZ-Wiki-Modding] and based on the initial [Z
 
 
 
-[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/compare/v1.0.3...HEAD
-[1.0.3]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.0.3
+[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.1.0
 [1.0.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.0.2
 [1.0.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.0.1
 [1.0.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.0.0
