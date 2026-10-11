@@ -111,6 +111,7 @@
     "vscode:prepublish": "npm run package",
     "compile": "tsc --noEmit -p ./ && node esbuild.js",
     "compile:extension": "tsc --noEmit -p ./ && node esbuild.js",
+    "build:lsp": "cd ZedScripts-LSP && uv sync --extra build && make build_app",
     "watch": "npm-run-all -p watch:*",
     "watch:tsc": "tsc --noEmit -w -p ./",
     "watch:esbuild": "node esbuild.js --watch",
