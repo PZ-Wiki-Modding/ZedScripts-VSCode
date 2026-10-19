@@ -23,9 +23,6 @@ export let ZSI: ZedScriptsInterface;
 export async function activate(context: vscode.ExtensionContext) {
     const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
     const useLocalMode = process.env.ZEDSCRIPTS_LOCAL_MODE === "1";
-    const pythonPath = process.platform === "win32" 
-        ? ".venv/Scripts/python.exe" 
-        : ".venv/bin/python";
 
     ZSI = new ZedScriptsInterface(context);
     ZSI.updateStatusBar();
@@ -40,7 +37,13 @@ export async function activate(context: vscode.ExtensionContext) {
     let serverOptions: ServerOptions;
 
     if (useSource) {
-        // retrieve source folder from global env var ZEDSCRIPTS_LSP_SRC
+        // setup venv source path
+        // see README for more information
+        const pythonPath = process.platform === "win32" 
+            ? ".venv/Scripts/python.exe" 
+            : ".venv/bin/python";
+
+            // retrieve source folder from global env var ZEDSCRIPTS_LSP_SRC
         const sourceFolder = process.env.ZEDSCRIPTS_LSP_SRC;
 
         // in debug mode, run the server from source 
