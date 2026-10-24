@@ -1,5 +1,8 @@
 import * as vscode from 'vscode';
 
+import { LSP_VERSION } from "./project";
+import { getBinaryRelease } from "./lsp";
+
 
 interface StatusBarConfig {
     readonly text: string;
@@ -104,6 +107,9 @@ export class ZedScriptsInterface {
         tooltip.appendMarkdown(`\n\nWorkspaces: ${this._workspaceNumber} / ${this._workspaceCount}`);
         tooltip.appendMarkdown(`\n\nLibraries: ${this._librariesNumber} / ${this._librariesCount}`);
 
+        tooltip.appendMarkdown(`\n\n-----\n\n`);
+        const binaryReleaseLink = getBinaryRelease(LSP_VERSION);
+        tooltip.appendMarkdown(`\n\n*LSP Version: [${LSP_VERSION}](${binaryReleaseLink})*`);
 
 
         // tooltip.appendMarkdown("Hello World!");

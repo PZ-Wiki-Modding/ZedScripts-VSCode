@@ -50,6 +50,10 @@ function getBinaryLink(version: string): string {
     return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/v${version}/${platformInfo.downloadName}`;
 }
 
+export function getBinaryRelease(version: string): string {
+    return `https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v${version}`
+}
+
 async function downloadBinary(
     destinationPath: string,
     version: string
