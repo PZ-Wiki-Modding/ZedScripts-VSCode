@@ -103,7 +103,11 @@ export async function activate(context: vscode.ExtensionContext) {
                 pattern: "**/.zedscripts.json"
             },
         ],
-        synchronize: { fileEvents: globalConfigWatcher }
+        synchronize: { fileEvents: globalConfigWatcher },
+        markdown: {
+            // isTrusted: true,
+            supportHtml: true,
+        },
     };
 
     // register the client/server communication
