@@ -44,6 +44,10 @@
       }
     },
     {
+      "name": "string.file.pz",
+      "match": "file"
+    },
+    {
       "name": "constant.numeric.pz",
       "match": "(?:integer|float)"
     },
