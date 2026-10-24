@@ -45,12 +45,16 @@ function getPlatformInfo(): PlatformInfo {
     };
 }
 
+function getBinaryLink(version: string): string {
+    const platformInfo = getPlatformInfo();
+    return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/v${version}/${platformInfo.downloadName}`;
+}
+
 async function downloadBinary(
-    downloadName: string,
     destinationPath: string,
     version: string
 ): Promise<void> {
-    const downloadUrl = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/v${version}/${downloadName}`;
+    const downloadUrl = getBinaryLink(version);
     console.log(`Downloading binary from: ${downloadUrl}`);
     
     return new Promise((resolve, reject) => {
@@ -142,7 +146,6 @@ export async function ensureLSPBinary(
             async (progress) => {
                 progress.report({ increment: 0 });
                 await downloadBinary(
-                    platformInfo.downloadName,
                     binaryPath,
                     extensionVersion
                 );
