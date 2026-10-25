@@ -29,4 +29,5 @@ export interface LOADING_DOCUMENTS_PARAMS {
     uri: string;
     workspace_type: WorkspaceType;
     index: number;
+    file_count: number | null;
 }

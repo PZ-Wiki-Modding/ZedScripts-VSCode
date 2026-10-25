@@ -30,8 +30,10 @@ export class ZedScriptsInterface {
     _uri: string = "unknown";
     _workspaceCount: number = 0;
     _workspaceNumber: number = 0;
+    _workspaceFileCount: number = 0;
     _librariesCount: number = 0;
     _librariesNumber: number = 0;
+    _librariesFileCount: number = 0;
 
     constructor(context: vscode.ExtensionContext) {
         this.context = context;
@@ -104,8 +106,8 @@ export class ZedScriptsInterface {
 
         // add tooltip about workspaces and libraries
         tooltip.appendMarkdown(`\n\n-----\n\n`);
-        tooltip.appendMarkdown(`\n\nWorkspaces: ${this._workspaceNumber} / ${this._workspaceCount}`);
-        tooltip.appendMarkdown(`\n\nLibraries: ${this._librariesNumber} / ${this._librariesCount}`);
+        tooltip.appendMarkdown(`\n\nWorkspaces: ${this._workspaceNumber} / ${this._workspaceCount} (${this._workspaceFileCount} files)`);
+        tooltip.appendMarkdown(`\n\nLibraries: ${this._librariesNumber} / ${this._librariesCount} (${this._librariesFileCount} files)`);
 
         tooltip.appendMarkdown(`\n\n-----\n\n`);
         const binaryReleaseLink = getBinaryRelease(LSP_VERSION);
@@ -159,11 +161,17 @@ export class ZedScriptsInterface {
     setWorkspaceIndex(number: number): void {
         this._workspaceNumber = number;
     }
+    setWorkspaceFileCount(count: number): void {
+        this._workspaceFileCount = count;
+    }
 
     setLibrariesCount(count: number): void {
         this._librariesCount = count;
     }
     setLibrariesIndex(number: number): void {
         this._librariesNumber = number;
+    }
+    setLibrariesFileCount(count: number): void {
+        this._librariesFileCount = count;
     }
 }

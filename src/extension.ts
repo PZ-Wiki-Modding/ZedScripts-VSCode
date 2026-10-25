@@ -164,15 +164,22 @@ function registerNotification(client: LanguageClient) {
             const uri = params.uri;
             const index = params.index;
             const workspaceType = params.workspace_type;
+            const fileCount = params.file_count;
             switch (workspaceType) {
                 case WorkspaceType.PROJECT:
                     ZSI.setUri(uri);
                     ZSI.setWorkspaceIndex(index);
+                    if (fileCount !== null) {
+                        ZSI.setWorkspaceFileCount(fileCount);
+                    }
                     ZSI.setState(State.LOADING_WORKSPACES);
                     break;
                 case WorkspaceType.LIBRARY:
                     ZSI.setUri(uri);
                     ZSI.setLibrariesIndex(index);
+                    if (fileCount !== null) {
+                        ZSI.setLibrariesFileCount(fileCount);
+                    }
                     ZSI.setState(State.LOADING_LIBRARIES);
                     break;
             }
