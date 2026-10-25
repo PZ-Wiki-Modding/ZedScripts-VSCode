@@ -20,7 +20,7 @@ package:
 	vsce package
 
 pat:
-	vsce verify-pat
+	vsce verify-pat simkdt
 
 # test:
 # 	npx @vscode/test-cli
@@ -32,8 +32,11 @@ release: pat #test
 # publish to registries on VS Code Marketplace
 	vsce publish "$(UPDATE_TYPE)"
 
+release_github:
+	set -euo pipefail
+
 # get version from package.json
-	VERSION=$$(node -e "console.log(require('./package.json').version)")
+# 	VERSION=$$(node -e "console.log(require('./package.json').version)")
 
 # release to GitHub
 	git push --tags
