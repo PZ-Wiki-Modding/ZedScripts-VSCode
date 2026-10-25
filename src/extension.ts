@@ -6,6 +6,7 @@ import {
     LanguageClientOptions,
 } from "vscode-languageclient/node";
 
+import { log, log_debug } from './logger';
 import { 
     LANG_ZEDSCRIPTS, 
     globalConfigDir, 
@@ -29,9 +30,9 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(ZSI.statusBar);
 
     if (useSource) {
-        console.debug("Running with Python source files.");
+        log_debug("Running with Python source files.");
     } else if (useLocalMode) {
-        console.debug("Running with local dist folder.");
+        log_debug("Running with local dist folder.");
     }
 
     let serverOptions: ServerOptions;
@@ -67,7 +68,7 @@ export async function activate(context: vscode.ExtensionContext) {
             transport: TransportKind.stdio,
         };
     } else {
-        console.debug("Running with GitHub release LSP binary.");
+        log_debug("Running with GitHub release LSP binary.");
         // download or use cached LSP binary from GitHub releases
         const binaryPath = await ensureLSPBinary(context, getLSPVersion());
         
@@ -126,7 +127,6 @@ export async function activate(context: vscode.ExtensionContext) {
 
 function registerNotification(client: LanguageClient) {
     client.onNotification(Notifications.ZedNotification.SET_ZEDSCRIPTS, (params: Notifications.SET_ZEDSCRIPTS_PARAMS) => {
-        // console.log("Received setZedScripts notification:", params);
         const uri = params.uri;
         const file = vscode.workspace.textDocuments.find(doc => doc.uri.toString() === uri);
         if (file) {
@@ -135,19 +135,23 @@ function registerNotification(client: LanguageClient) {
     });
 
     client.onNotification(Notifications.ZedNotification.SET_PROGRESS, (params: Notifications.SET_PROGRESS_PARAMS) => {
+        log(`Progress updated: ${params.progress.toPrecision(3)}`);
         ZSI.setProgress(params.progress);
         ZSI.updateStatusBar();
     });
     client.onNotification(Notifications.ZedNotification.SET_WORKSPACE_COUNT, (params: Notifications.SET_WORKSPACE_COUNT_PARAMS) => {
+        log(`Workspace count updated: ${params.count}`);
         ZSI.setWorkspaceCount(params.count);
         ZSI.updateStatusBar();
     });
     client.onNotification(Notifications.ZedNotification.SET_LIBRARIES_COUNT, (params: Notifications.SET_LIBRARIES_COUNT_PARAMS) => {
+        log(`Libraries count updated: ${params.count}`);
         ZSI.setLibrariesCount(params.count);
         ZSI.updateStatusBar();
     });
 
     client.onNotification(Notifications.ZedNotification.LOADING_DOCUMENTS, (params: Notifications.LOADING_DOCUMENTS_PARAMS) => {
+        log(`Loading documents: ${JSON.stringify(params)}`);
         const uri = params.uri;
         const index = params.index;
         const workspaceType = params.workspace_type;
@@ -165,6 +169,7 @@ function registerNotification(client: LanguageClient) {
         }
     });
     client.onNotification(Notifications.ZedNotification.LOADING_DOCUMENTS_DONE, () => {
+        log(`ZedServer loading documents done`);
         ZSI.setState(State.RUNNING);
     });
 }

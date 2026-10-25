@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as https from 'https';
 
+import { log, log_error } from './logger';
 import { LSP_VERSION } from './project';
 
 const GITHUB_OWNER = 'PZ-Wiki-Modding';
@@ -59,7 +60,7 @@ async function downloadBinary(
     version: string
 ): Promise<void> {
     const downloadUrl = getBinaryLink(version);
-    console.log(`Downloading binary from: ${downloadUrl}`);
+    log(`Downloading binary from: ${downloadUrl}`);
     
     return new Promise((resolve, reject) => {
         const attemptDownload = (url: string) => {
@@ -72,7 +73,7 @@ async function downloadBinary(
                         reject(new Error(`Redirect with no location header. Status: ${response.statusCode}`));
                         return;
                     }
-                    console.log(`Following redirect to: ${redirectUrl}`);
+                    log(`Following redirect to: ${redirectUrl}`);
                     attemptDownload(redirectUrl);
                     return;
                 }
@@ -116,7 +117,7 @@ export async function ensureLSPBinary(
     extensionVersion: string,
     isFallback: boolean = false
 ): Promise<string> {
-    console.log(`Ensuring LSP binary for version: ${extensionVersion}`);
+    log(`Ensuring LSP binary for version: ${extensionVersion}`);
 
     const platformInfo = getPlatformInfo();
     const storagePath = context.globalStoragePath;
@@ -132,12 +133,12 @@ export async function ensureLSPBinary(
     if (fs.existsSync(binaryPath) && fs.existsSync(versionFile)) {
         const cachedVersion = fs.readFileSync(versionFile, 'utf-8').trim();
         if (cachedVersion === extensionVersion) {
-            console.log(`Using cached LSP binary at ${binaryPath} with version ${cachedVersion}`);
+            log(`Using cached LSP binary at ${binaryPath} with version ${cachedVersion}`);
             return binaryPath;
         }
     }
 
-    console.log(`Downloading LSP binary to ${binaryPath} with version ${extensionVersion}`);
+    log(`Downloading LSP binary to ${binaryPath} with version ${extensionVersion}`);
     
     // Show progress notification
     try {
@@ -170,7 +171,7 @@ export async function ensureLSPBinary(
     // fallback to hardcoded LSP version if download fails
     } catch (error) {
         if (!isFallback) {
-            console.error(`Failed to download LSP binary, attempting fallback: ${error instanceof Error ? error.message : String(error)}`);
+            log_error(`Failed to download LSP binary, attempting fallback: ${error instanceof Error ? error.message : String(error)}`);
             vscode.window.showErrorMessage(`Failed to download LSP binary, attempting hardcoded fallback (${LSP_VERSION}). Reason: ${error instanceof Error ? error.message : String(error)}`);
             return await ensureLSPBinary(context, LSP_VERSION, true);
         }
