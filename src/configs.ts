@@ -46,8 +46,11 @@ export function getInitializationOptions(): InitializationOptions {
 
 export function getLSPVersion(): string {
     const config_version: string | undefined = vscode.workspace.getConfiguration("zedscripts").get("lsp.version")
-    if (config_version && config_version != "") {
-        return config_version;
+    if (config_version) {
+        const trimmed_version = config_version.trim();
+        if (trimmed_version !== "") {
+            return trimmed_version;
+        }
     }
     return LSP_VERSION;
 }
