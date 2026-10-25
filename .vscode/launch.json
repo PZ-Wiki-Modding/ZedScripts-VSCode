@@ -39,7 +39,7 @@
 
         // launch in python direct mode for debugging
         {
-            "name": "Run Extension (Python Debug)",
+            "name": "Run Extension (source)",
             "type": "extensionHost",
             "request": "launch",
             "args": [
