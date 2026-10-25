@@ -3,6 +3,11 @@
 
 ## [Unreleased]
 
+
+## [1.2.1] - 2026/10/24
+- Set to latest LSP version (1.3.1)
+- Provide LSP version information in the interface menu with a direct link to the LSP release page being used
+
 ## [1.2.0] - 2026/10/24
 - Set supportHtml to true for image rendering in hovering tooltips
 - Added new file type support to ZedServer
@@ -37,7 +42,8 @@ Created by [@SimKDT]. Provided by [@PZ-Wiki-Modding] and based on the initial [Z
 
 
 
-[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/compare/v1.2.0...HEAD
+[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.1
 [1.2.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.0
 [1.1.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.1.1
 [1.1.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.1.0
