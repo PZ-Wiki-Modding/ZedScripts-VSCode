@@ -58,7 +58,7 @@
         "zedscripts.lsp.version": {
           "type": "string",
           "scope": "application",
-          "description": "Version of the ZedScripts LSP server to use. Reload VSCode after changing this setting."
+          "description": "(ADVANCED) Version of the ZedScripts LSP server to use. Reload VSCode after changing this setting. Only change this if you know what you are doing."
         }
       }
     },
