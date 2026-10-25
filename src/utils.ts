@@ -1,8 +1,13 @@
 import * as vscode from "vscode";
 import { LANG_ZEDSCRIPTS } from "./project";
 
-export function reopenFile(document: vscode.TextDocument): Thenable<vscode.TextDocument> {
-    return vscode.languages.setTextDocumentLanguage(document, LANG_ZEDSCRIPTS);
+export function reopenFile(document: vscode.TextDocument): void {
+    // no need to reopen if it's already the correct language
+    if (document.languageId === LANG_ZEDSCRIPTS) {
+        return;
+    }
+    vscode.languages.setTextDocumentLanguage(document, LANG_ZEDSCRIPTS);
+    return;
 }
 
 
