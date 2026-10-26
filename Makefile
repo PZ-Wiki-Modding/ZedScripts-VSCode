@@ -12,6 +12,7 @@ help:
 	@echo "  package: Package the extension"
 	@echo "  release: Publish to VS Code Marketplace"
 	@echo "      UPDATE_TYPE=<patch|minor|major> (default patch)"
+	@echo "  release_github: Publish to GitHub releases"
 
 build:
 	npm run build
