@@ -37,7 +37,7 @@ release_github:
 	set -euo pipefail
 
 # get version from package.json
-# 	VERSION=$$(node -e "console.log(require('./package.json').version)")
+	VERSION=$$(node -e "console.log(require('./package.json').version)")
 
 # release to GitHub
 	git push --tags
