@@ -3,6 +3,8 @@
 
 ## [Unreleased]
 
+## [1.2.2] - 2026/10/26
+- Bump LSP version (1.4.0)
 
 ## [1.2.1] - 2026/10/24
 - Set to latest LSP version (1.3.1)
@@ -42,7 +44,8 @@ Created by [@SimKDT]. Provided by [@PZ-Wiki-Modding] and based on the initial [Z
 
 
 
-[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/compare/v1.2.1...HEAD
+[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.2
 [1.2.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.1
 [1.2.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.0
 [1.1.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.1.1
