@@ -27,7 +27,7 @@ pat:
 # 	npx @vscode/test-cli
 # 	npm run test:jest
 
-release: package pat #test
+release: pat #test
 	set -euo pipefail
 
 # publish to registries on VS Code Marketplace
