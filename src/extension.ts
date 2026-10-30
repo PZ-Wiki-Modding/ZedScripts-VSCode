@@ -164,7 +164,7 @@ function registerNotification(client: LanguageClient) {
     client.onNotification(Notifications.ZedNotification.LOADING_DOCUMENTS, 
         (params: Notifications.LOADING_DOCUMENTS_PARAMS) => {
             log(`Loading documents: ${JSON.stringify(params)}`);
-            const uri = params.uri;
+            const uri = vscode.Uri.parse(params.uri);
             const index = params.index;
             const workspaceType = params.workspace_type;
             const fileCount = params.file_count;

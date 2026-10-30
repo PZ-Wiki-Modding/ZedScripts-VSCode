@@ -27,7 +27,7 @@ export class ZedScriptsInterface {
     state: State = State.STOPPED;
 
     _progress: number = 0;
-    _uri: string = "unknown";
+    _uri: vscode.Uri = vscode.Uri.parse("unknown");
     _workspaceCount: number = 0;
     _workspaceNumber: number = 0;
     _workspaceFileCount: number = 0;
@@ -93,10 +93,10 @@ export class ZedScriptsInterface {
                 tooltip.appendMarkdown("ZedScripts is currently OFF.");
                 break;
             case State.LOADING_WORKSPACES:
-                tooltip.appendMarkdown("ZedScripts is loading workspace:" + this._uri);
+                tooltip.appendMarkdown("ZedScripts is loading workspace:" + this._uri.fsPath);
                 break;
             case State.LOADING_LIBRARIES:
-                tooltip.appendMarkdown("ZedScripts is loading library: " + this._uri);
+                tooltip.appendMarkdown("ZedScripts is loading library: " + this._uri.fsPath);
                 break;
             case State.RUNNING:
                 tooltip.appendMarkdown("ZedScripts is loaded.");
@@ -151,7 +151,7 @@ export class ZedScriptsInterface {
         this._progress = progress;
     }
 
-    setUri(uri: string): void {
+    setUri(uri: vscode.Uri): void {
         this._uri = uri;
     }
 
