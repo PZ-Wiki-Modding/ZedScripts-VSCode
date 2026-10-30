@@ -25,6 +25,7 @@ export async function activate(context: vscode.ExtensionContext) {
     const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
     const useLocalMode = process.env.ZEDSCRIPTS_LOCAL_MODE === "1";
 
+    // register interface (bottom status bar)
     ZSI = new ZedScriptsInterface(context);
     ZSI.updateStatusBar();
     context.subscriptions.push(ZSI.statusBar);
@@ -33,6 +34,8 @@ export async function activate(context: vscode.ExtensionContext) {
         log_debug("Running with Python source files.");
     } else if (useLocalMode) {
         log_debug("Running with local dist folder.");
+    } else {
+        log_debug("Running with GitHub release LSP binary.");
     }
 
     let serverOptions: ServerOptions;
