@@ -14,6 +14,7 @@ export enum State {
     STOPPED,
     LOADING_WORKSPACES,
     LOADING_LIBRARIES,
+    RELOADING_DIAGNOSTICS,
     RUNNING,
 }
 
@@ -63,17 +64,21 @@ export class ZedScriptsInterface {
 
 
     getStatusBarConfig(): StatusBarConfig {
-        const fileCounter = this.getProgress();
+        const progressCounter = this.getProgress();
         const configs: Record<State, StatusBarConfig> = {
             [State.STOPPED]: {
                 text: "$(debug-stop) ZedScripts",
             },
             [State.LOADING_WORKSPACES]: {
-                text: "$(sync~spin) ZedScripts: loading workspaces... " + fileCounter,
+                text: "$(sync~spin) ZedScripts: loading workspaces... " + progressCounter,
                 color: new vscode.ThemeColor("statusBarItem.warningBackground"),
             },
             [State.LOADING_LIBRARIES]: {
-                text: "$(sync~spin) ZedScripts: loading libraries... " + fileCounter,
+                text: "$(sync~spin) ZedScripts: loading libraries... " + progressCounter,
+                color: new vscode.ThemeColor("statusBarItem.warningBackground"),
+            },
+            [State.RELOADING_DIAGNOSTICS]: {
+                text: "$(sync~spin) ZedScripts: reloading diagnostics... " + progressCounter,
                 color: new vscode.ThemeColor("statusBarItem.warningBackground"),
             },
             [State.RUNNING]: {

@@ -192,6 +192,17 @@ function registerNotification(client: LanguageClient) {
         log(`ZedServer loading documents done`);
         ZSI.setState(State.RUNNING);
     });
+
+    client.onNotification(Notifications.ZedNotification.RELOADING_DIAGNOSTICS, 
+        (params: Notifications.RELOADING_DIAGNOSTICS_PARAMS) => {
+            log(`Reloading diagnostics: ${JSON.stringify(params)}`);
+            // const uri = vscode.Uri.parse(params.uri);
+            // const index = params.index;
+            // const workspaceType = params.workspace_type;
+            // const fileCount = params.file_count;
+            ZSI.setState(State.RELOADING_DIAGNOSTICS);
+        }
+    );
 }
 
 // This method is called when your extension is deactivated

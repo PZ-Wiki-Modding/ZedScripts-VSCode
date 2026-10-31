@@ -9,6 +9,8 @@ export enum ZedNotification {
 
     LOADING_DOCUMENTS = "zedscripts/loadingDocuments",
     LOADING_DOCUMENTS_DONE = "zedscripts/loadingDocumentsDone",
+
+    RELOADING_DIAGNOSTICS = "zedscripts/reloadingDiagnostics",
 }
 
 export interface SET_ZEDSCRIPTS_PARAMS {
@@ -26,6 +28,13 @@ export interface SET_LIBRARIES_COUNT_PARAMS {
 }
 
 export interface LOADING_DOCUMENTS_PARAMS {
+    uri: string;
+    workspace_type: WorkspaceType;
+    index: number;
+    file_count: number | null;
+}
+
+export interface RELOADING_DIAGNOSTICS_PARAMS {
     uri: string;
     workspace_type: WorkspaceType;
     index: number;
