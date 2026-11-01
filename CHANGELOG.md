@@ -3,6 +3,9 @@
 
 ## [Unreleased]
 
+## [1.2.5] - 2026/10/28
+- Bump LSP version (1.5.1)
+
 ## [1.2.4] - 2026/10/28
 - Bump LSP version (1.5.0)
 
