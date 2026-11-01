@@ -3,6 +3,9 @@
 
 ## [Unreleased]
 
+## [1.2.4] - 2026/10/28
+- Bump LSP version (1.5.0)
+
 ## [1.2.3] - 2026/10/28
 - Bump LSP version (1.4.1)
 
@@ -47,7 +50,8 @@ Created by [@SimKDT]. Provided by [@PZ-Wiki-Modding] and based on the initial [Z
 
 
 
-[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/compare/v1.2.3...HEAD
+[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/compare/v1.2.4...HEAD
+[1.2.4]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.2.4
 [1.2.3]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.2.3
 [1.2.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.2.2
 [1.2.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.2.1
