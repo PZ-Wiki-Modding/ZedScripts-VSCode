@@ -47,18 +47,18 @@ Created by [@SimKDT]. Provided by [@PZ-Wiki-Modding] and based on the initial [Z
 
 
 
-[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/compare/v1.2.3...HEAD
-[1.2.3]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.3
-[1.2.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.2
-[1.2.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.1
-[1.2.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.2.0
-[1.1.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.1.1
-[1.1.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.1.0
-[1.0.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.0.2
-[1.0.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.0.1
-[1.0.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v1.0.0
-[0.0.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v0.0.2
-[0.0.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-LSP/releases/tag/v0.0.1
-[ZedScripts]: https://github.com/PZ-Wiki-Modding/ZedScripts
+[unreleased]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/compare/v1.2.3...HEAD
+[1.2.3]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.2.3
+[1.2.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.2.2
+[1.2.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.2.1
+[1.2.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.2.0
+[1.1.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.1.1
+[1.1.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.1.0
+[1.0.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.0.2
+[1.0.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.0.1
+[1.0.0]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v1.0.0
+[0.0.2]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v0.0.2
+[0.0.1]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode/releases/tag/v0.0.1
+[ZedScripts]: https://github.com/PZ-Wiki-Modding/ZedScripts-VSCode
 [@PZ-Wiki-Modding]: https://github.com/PZ-Wiki-Modding
 [@SimKDT]: https://github.com/SimKDT
