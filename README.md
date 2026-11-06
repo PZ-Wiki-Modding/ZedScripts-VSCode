@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/PZ-Wiki-Modding/ZedScripts-VSCode?label=License)](LICENSE)
 ![Code Size](https://img.shields.io/github/languages/code-size/PZ-Wiki-Modding/ZedScripts-VSCode?label=Code%20Size)
-[![ZedScripts LSP Version](https://img.shields.io/badge/ZedScripts%20LSP-1.0.0-orange?logo=pypi)](https://pypi.org/project/ZedScripts/1.0.0/)
+[![ZedScripts LSP Version](https://img.shields.io/badge/ZedScripts%20LSP-1.5.1-orange?logo=pypi)](https://pypi.org/project/ZedScripts/1.5.1/)
 
 A Visual Studio Code extension which implements the [ZedScripts Language Server Protocol](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP).
 
@@ -11,7 +11,7 @@ A Visual Studio Code extension which implements the [ZedScripts Language Server 
 See the [ZedScripts-LSP](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP) repository for detailed documentation of the LSP capabilities.
 
 ## Development
-You can develop the[ZedScripts-LSP](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP) project actively alongside this extension by setting up a `.venv` environment in the root of the repository, and launching "Run Extension (Python Debug)" from [launch.json](.vscode/launch.json).
+You can develop the [ZedScripts-LSP](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP) project actively alongside this extension by setting up a `.venv` environment in the root of the repository, and launching "Run Extension (Python Debug)" from [launch.json](.vscode/launch.json).
 
 To that, use the following to have an active linking to the package containing the ZedScripts-LSP source files:
 
