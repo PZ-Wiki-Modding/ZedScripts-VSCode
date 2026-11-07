@@ -18,10 +18,14 @@ import { ensureLSPBinary } from "./lsp";
 import { ZedScriptsInterface, State } from "./interface";
 import { WorkspaceType } from "./stubs";
 import { getLSPVersion } from "./configs";
+import { WorkspaceTreeProvider } from "./providers/tree";
 
 export let ZSI: ZedScriptsInterface;
+export let ZST: WorkspaceTreeProvider;
 
 export async function activate(context: vscode.ExtensionContext) {
+    // registerDemoTreeView(context);
+
     const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
     const useLocalMode = process.env.ZEDSCRIPTS_LOCAL_MODE === "1";
 
@@ -30,6 +34,12 @@ export async function activate(context: vscode.ExtensionContext) {
     ZSI.updateStatusBar();
     context.subscriptions.push(ZSI.statusBar);
 
+    // register workspace tree view (left panel menu)
+    ZST = new WorkspaceTreeProvider(context);
+    const treeView = ZST.createTreeView();
+    context.subscriptions.push(treeView);
+
+    // log the LSP mode being used
     if (useSource) {
         log_debug("Running with Python source files.");
     } else if (useLocalMode) {
@@ -170,6 +180,7 @@ function registerNotification(client: LanguageClient) {
             const fileCount = params.file_count;
             switch (workspaceType) {
                 case WorkspaceType.PROJECT:
+                    ZST.addWorkspace(uri);
                     ZSI.setUri(uri);
                     ZSI.setWorkspaceIndex(index);
                     if (fileCount !== null) {
@@ -178,6 +189,7 @@ function registerNotification(client: LanguageClient) {
                     ZSI.setState(State.LOADING_WORKSPACES);
                     break;
                 case WorkspaceType.LIBRARY:
+                    ZST.addLibrary(uri);
                     ZSI.setUri(uri);
                     ZSI.setLibrariesIndex(index);
                     if (fileCount !== null) {

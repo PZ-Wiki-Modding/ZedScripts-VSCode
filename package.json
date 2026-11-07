@@ -103,7 +103,51 @@
         "fileMatch": ".zedscripts.json",
         "url": "./ZedScripts-LSP/schema/zedscripts.json"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "zedscripts-navigator",
+          "title": "ZedScripts Navigator",
+          "icon": "icons/zedscripts_menu.svg"
+        }
+      ]
+    },
+    "views": {
+      "zedscripts-navigator": [
+        {
+          "id": "zedscriptsEnvironment",
+          "name": "Libraries",
+          "icon": "icons/zedscripts_menu.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "zedscripts.navigator.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "zedscripts.navigator.select",
+        "title": "Select Demo Item"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "zedscripts.navigator.refresh",
+          "when": "view == zedscriptsNavigator",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "zedscripts.navigator.select",
+          "when": "false"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
