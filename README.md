@@ -11,9 +11,9 @@ A Visual Studio Code extension which implements the [ZedScripts Language Server 
 See the [ZedScripts-LSP](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP) repository for detailed documentation of the LSP capabilities.
 
 ## Development
-You can develop the [ZedScripts-LSP](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP) project actively alongside this extension by setting up a `.venv` environment in the root of the repository, and launching "Run Extension (Python Debug)" from [launch.json](.vscode/launch.json).
+You can develop the [ZedScripts-LSP](https://github.com/PZ-Wiki-Modding/ZedScripts-LSP) project actively alongside this extension by setting up a `.venv` environment in the root of the repository, and launching "Run Extension (source)" from [launch.json](.vscode/launch.json).
 
-To that, use the following to have an active linking to the package containing the ZedScripts-LSP source files:
+To do that, use the following to have an active linking to the package containing the ZedScripts-LSP source files:
 
 ```bash
 uv venv .venv
