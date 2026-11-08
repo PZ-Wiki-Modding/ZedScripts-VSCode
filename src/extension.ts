@@ -57,7 +57,7 @@ export async function activate(context: vscode.ExtensionContext) {
         // via the venv's interpreter so debugpy can attach to it
         serverOptions = {
             command: context.asAbsolutePath(pythonPath),
-            args: ["-m", "ZedScripts.main"],
+            args: ["-m", "ZedScripts", "start"],
             transport: TransportKind.stdio,
             options: {
                 cwd: sourceFolder,
@@ -78,6 +78,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
         serverOptions = {
             command: `${sourceFolder}/../dist/${executableName}`,
+            args: ["start"],
             transport: TransportKind.stdio,
             options: {
                 env: {...process.env},
