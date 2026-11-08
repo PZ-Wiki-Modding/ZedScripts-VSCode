@@ -49,6 +49,9 @@ export async function activate(context: vscode.ExtensionContext) {
 
             // retrieve source folder from global env var ZEDSCRIPTS_LSP_SRC
         const sourceFolder = process.env.ZEDSCRIPTS_LSP_SRC;
+        if (!sourceFolder) {
+            throw new Error("ZEDSCRIPTS_LSP_SRC environment variable is not set.");
+        }
 
         // in debug mode, run the server from source 
         // via the venv's interpreter so debugpy can attach to it
