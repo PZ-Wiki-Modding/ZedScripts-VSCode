@@ -23,7 +23,7 @@ export let ZSI: ZedScriptsInterface;
 
 export async function activate(context: vscode.ExtensionContext) {
     const useSource = process.env.ZEDSCRIPTS_USE_SOURCE === "1";
-    const useLocalMode = process.env.ZEDSCRIPTS_LOCAL_MODE === "1";
+    const useBuildMode = process.env.ZEDSCRIPTS_LOCAL_MODE === "1";
 
     // register interface (bottom status bar)
     ZSI = new ZedScriptsInterface(context);
@@ -32,7 +32,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     if (useSource) {
         log_debug("Running with Python source files.");
-    } else if (useLocalMode) {
+    } else if (useBuildMode) {
         log_debug("Running with local dist folder.");
     } else {
         log_debug("Running with GitHub release LSP binary.");
@@ -61,7 +61,7 @@ export async function activate(context: vscode.ExtensionContext) {
                 env: {...process.env},
             },
         };
-    } else if (useLocalMode) {
+    } else if (useBuildMode) {
         // use locally built dist folder (for development)
         const executableName = process.platform === "win32" 
             ? "ZedScripts.exe" 
@@ -71,7 +71,6 @@ export async function activate(context: vscode.ExtensionContext) {
             transport: TransportKind.stdio,
         };
     } else {
-        log_debug("Running with GitHub release LSP binary.");
         // download or use cached LSP binary from GitHub releases
         const binaryPath = await ensureLSPBinary(context, getLSPVersion());
         
