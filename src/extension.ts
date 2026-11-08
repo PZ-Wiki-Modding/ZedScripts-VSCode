@@ -47,7 +47,7 @@ export async function activate(context: vscode.ExtensionContext) {
             ? ".venv/Scripts/python.exe" 
             : ".venv/bin/python";
 
-            // retrieve source folder from global env var ZEDSCRIPTS_LSP_SRC
+        // retrieve source folder from global env var ZEDSCRIPTS_LSP_SRC
         const sourceFolder = process.env.ZEDSCRIPTS_LSP_SRC;
         if (!sourceFolder) {
             throw new Error("ZEDSCRIPTS_LSP_SRC environment variable is not set.");
@@ -69,8 +69,15 @@ export async function activate(context: vscode.ExtensionContext) {
         const executableName = process.platform === "win32" 
             ? "ZedScripts.exe" 
             : "ZedScripts";
+
+            // retrieve source folder from global env var ZEDSCRIPTS_LSP_SRC
+        const sourceFolder = process.env.ZEDSCRIPTS_LSP_SRC;
+        if (!sourceFolder) {
+            throw new Error("ZEDSCRIPTS_LSP_SRC environment variable is not set.");
+        }
+
         serverOptions = {
-            command: context.asAbsolutePath(`ZedScripts-LSP/dist/${executableName}`),
+            command: `${sourceFolder}/../dist/${executableName}`,
             transport: TransportKind.stdio,
             options: {
                 env: {...process.env},
