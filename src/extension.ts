@@ -69,6 +69,9 @@ export async function activate(context: vscode.ExtensionContext) {
         serverOptions = {
             command: context.asAbsolutePath(`ZedScripts-LSP/dist/${executableName}`),
             transport: TransportKind.stdio,
+            options: {
+                env: {...process.env},
+            }
         };
     } else {
         // download or use cached LSP binary from GitHub releases
@@ -77,6 +80,9 @@ export async function activate(context: vscode.ExtensionContext) {
         serverOptions = {
             command: binaryPath,
             transport: TransportKind.stdio,
+            options: {
+                env: {...process.env},
+            }
         };
     }
     
